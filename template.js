@@ -23,7 +23,7 @@ exports.template = function(grunt, init, done) {
     init.process({ type: 'sw4-template' }, [
 
         // Prompt for these values
-        init.prompt('name', 'emotion_mytemplate'),
+        init.prompt('name', 'emotion_my_template'),
         init.prompt('title', function(value, data, done) {
             // Fix Shopware capitalization
             value = value.replace(/shopware/gi, 'Shopware');
@@ -61,16 +61,18 @@ exports.template = function(grunt, init, done) {
 
         // Generate package.json file, used by npm and grunt.
         init.writePackageJSON(props.name + '/package.json', {
-            name: 'sw4-frontend-template',
-            version: '0.0.0-ignored',
-            npm_test: 'grunt qunit',
+            name: props.name,
+            version: props.version,
+            npm_test: 'grunt',
             node_version: '>= 0.8.0',
             devDependencies: {
-                'grunt-contrib-jshint': '~0.1.1',
-                'grunt-contrib-concat': '~0.1.2',
-                'grunt-contrib-uglify': '~0.1.1',
-                'grunt-contrib-watch': '~0.2.0',
-                'grunt-contrib-clean': '~0.4.0'
+                "grunt": "latest",
+                "grunt-contrib-uglify": "latest",
+                "grunt-contrib-jshint": "latest",
+                "grunt-contrib-watch": "latest",
+                "grunt-contrib-concat": "latest",
+                "grunt-contrib-less": "latest",
+                "grunt-contrib-qunit": "latest"
             }
         });
 
