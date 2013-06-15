@@ -1,0 +1,7 @@
+{
+    "name":    "{%= title %}",
+    "author":  "{%= author_name %} <{%= author_email %}>",
+    "license": "{%= licenses %}",
+    "esi":     true,
+    "emotion": true
+}

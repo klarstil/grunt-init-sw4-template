@@ -1,0 +1,5 @@
+{
+    "frontend/_resources/javascript/name.js": "frontend/_resources/javascript/jquery.{%= name %}.js",
+    "frontend/_resources/styles/name.css": "frontend/_resources/styles/{%= name %}.css",
+    "frontend/_resources/styles/name_legacy.css": "frontend/_resources/styles/{%= name %}_legacy.css"
+}
