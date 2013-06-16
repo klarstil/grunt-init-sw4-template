@@ -6,6 +6,7 @@
  * Licensed under the MIT license.
  */
 module.exports = function (grunt) {
+    "use strict";
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -68,6 +69,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         qunit: {
             all: [ 'frontend/_resources/javascript/test/**/*.html' ]
         },
@@ -75,9 +77,27 @@ module.exports = function (grunt) {
         watch: {
             files: [ '<%= jshint.files %>' ],
             tasks: [ 'jshint', 'qunit', 'less:development' ]
+        },
+
+        bower: {
+            install: {
+                options: {
+                    targetDir: 'frontend/_resources/components',
+                    layout: 'byType',
+                    install: true,
+                    verbose: true,
+                    cleanTargetDir: true,
+                    cleanBowerDir: true
+                }
+            }
+        },
+
+        'bower-install': {
+            html: 'frontend/index/header.tpl'
         }
     });
 
+    // Common npm tasks
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -85,7 +105,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-qunit');
 
-    grunt.registerTask('test', [ 'jshint', 'qunit' ]);
+    // Bower npm tasks
+    grunt.loadNpmTasks('grunt-bower-install');
+    grunt.loadNpmTasks('grunt-bower-task');
 
+    // Register custom tasks
+    grunt.registerTask('test', [ 'jshint', 'qunit' ]);
     grunt.registerTask('default', [ 'jshint', 'qunit', 'less:production', 'concat', 'uglify' ]);
+    grunt.registerTask('build', [ 'bower', 'jshint', 'qunit', 'less:production', 'concat', 'uglify' ]);
 };

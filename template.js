@@ -63,8 +63,11 @@ exports.template = function(grunt, init, done) {
         init.writePackageJSON(props.name + '/package.json', {
             name: props.name,
             version: props.version,
+            homepage: props.homepage,
+            author: props.author_name + '<' + props.author_email + '>',
             npm_test: 'grunt',
             node_version: '>= 0.8.0',
+            dependencies: {},
             devDependencies: {
                 "grunt": "latest",
                 "grunt-contrib-uglify": "latest",
@@ -72,8 +75,20 @@ exports.template = function(grunt, init, done) {
                 "grunt-contrib-watch": "latest",
                 "grunt-contrib-concat": "latest",
                 "grunt-contrib-less": "latest",
-                "grunt-contrib-qunit": "latest"
+                "grunt-contrib-qunit": "latest",
+                "grunt-bower-task": "latest",
+                "grunt-bower-install": "latest"
             }
+        });
+
+        // Built up the bower.json
+        init.writePackageJSON(props.name + '/bower.json', {
+            name: props.name,
+            version: props.version,
+            description: props.description,
+            dependencies: {
+            },
+            ignore: [ "node_modules" ]
         });
 
         // All done!
