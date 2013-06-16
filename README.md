@@ -106,3 +106,7 @@ Now run the grunt task ```grunt bower``` to clean up your ```_resources``` direc
 
 ---
 Please keep in mind that you can list all available tasks using the command ```grunt --help```.
+
+## License
+Copyright (c) 2013 "klarstil" Stephan Pohl.
+Licensed under the MIT license.
